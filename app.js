@@ -12,7 +12,7 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const projectRouter = require('./routes/projectRoutes');
-const collectionRouter = require('./routes/collectionRoutes');
+const fieldRouter = require('./routes/fieldRoutes');
 
 const app = express();
 
@@ -83,7 +83,7 @@ app.use((req, res, next) => {
 // ROUTES
 app.use('/api/users', userRouter);
 app.use('/api/projects', projectRouter);
-app.use('/api/collections', collectionRouter);
+app.use('/api/fields', fieldRouter);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

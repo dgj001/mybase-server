@@ -5,7 +5,7 @@ const APIFeatures = require('./../utils/apiFeatures');
 exports.deleteOne = Model => catchAsync(async (req, res, next) => {
   const doc = await Model.findOneAndDelete({
     _id: req.params.id,
-    userId: req.user,
+    userId: req.user._id,
   });
 
   if (!doc) {
@@ -20,7 +20,7 @@ exports.deleteOne = Model => catchAsync(async (req, res, next) => {
 exports.updateOne = Model => catchAsync(async (req, res, next) => {
   const doc = await Model.findOneAndUpdate({
       _id: req.params.id,
-      userId: req.user,
+      userId: req.user._id,
     }, 
     req.body, {
     new: true,
@@ -40,7 +40,7 @@ exports.updateOne = Model => catchAsync(async (req, res, next) => {
 exports.createOne = (Model) => catchAsync(async (req, res, next) => {
   const newDoc = await Model.create({
     ...req.body,
-    userId: req.user,
+    userId: req.user._id,
   });
   res.status(201).json({
     status: 'success',
@@ -51,7 +51,7 @@ exports.createOne = (Model) => catchAsync(async (req, res, next) => {
 exports.getOne = (Model, popOptions) => catchAsync(async (req, res, next) => {
   let query = Model.findOne({ 
     _id: req.params.id,
-    userId: req.user,
+    userId: req.user._id,
   });
   if (popOptions) {
     query = query.populate(popOptions);
@@ -69,9 +69,8 @@ exports.getOne = (Model, popOptions) => catchAsync(async (req, res, next) => {
 });
 
 exports.getAll = (Model, popOptions) => catchAsync(async (req, res, next) => {
-  console.log(req.user)
   let filter = {
-    userId: req.user
+    userId: req.user._id
   };
 
   // EXECUTE QUERY

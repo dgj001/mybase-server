@@ -12,8 +12,7 @@ const projectSchema = new mongoose.Schema({
     minlength: [1, 'A project name must be >= 1 characters']
   },
   userId: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User',
+    type: String,
   },
   target: {
     type: String,
