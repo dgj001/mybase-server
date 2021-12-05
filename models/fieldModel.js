@@ -17,6 +17,9 @@ const fieldSchema = new mongoose.Schema({
   projectId: {
     type: String,
   },
+  documentId: {
+    type: String,
+  },
 });
 
 const Field = mongoose.model('field', fieldSchema);

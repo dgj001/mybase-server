@@ -6,6 +6,7 @@ const chance = new Chance();
 const documentSchema = new mongoose.Schema({
   id: {
     type: String,
+    unique: true,
   },
   userId: {
     type: String,
@@ -17,10 +18,10 @@ const documentSchema = new mongoose.Schema({
 });
 
 documentSchema.pre('save', function(next) {
-  if (this.isNew) {
+  if (this.isNew && !this.id) {
     this.id = chance.string({ length: 16, casing: 'lower', alpha: true, numeric: true });
-    next();
   }
+  next();
 });
 
 const Document = mongoose.model('document', documentSchema);
