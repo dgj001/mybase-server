@@ -11,7 +11,7 @@ const documentSchema = new mongoose.Schema({
   userId: {
     type: String,
   },
-  projectId: {
+  collectionId: {
     type: String,
     required: true,
   },

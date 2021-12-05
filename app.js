@@ -14,6 +14,7 @@ const userRouter = require('./routes/userRoutes');
 const projectRouter = require('./routes/projectRoutes');
 const fieldRouter = require('./routes/fieldRoutes');
 const documentRouter = require('./routes/documentRoutes');
+const collectionRouter = require('./routes/collectionRoutes');
 
 const app = express();
 
@@ -86,6 +87,7 @@ app.use('/api/users', userRouter);
 app.use('/api/projects', projectRouter);
 app.use('/api/fields', fieldRouter);
 app.use('/api/documents', documentRouter);
+app.use('/api/collections', collectionRouter);
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
