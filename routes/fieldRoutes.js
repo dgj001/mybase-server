@@ -6,7 +6,8 @@ const authController = require('../controllers/authController')
 
 router.route('/')
   .get(authController.protect, fieldController.getAll)
-  .post(authController.protect, fieldController.post);
+  .post(authController.protect, fieldController.post)
+  .delete(authController.protect, fieldController.deleteAll);
 
 router.route('/:id')
   .get(authController.protect, fieldController.get)
