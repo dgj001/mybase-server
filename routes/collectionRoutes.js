@@ -8,6 +8,9 @@ router.route('/')
   .get(authController.protect, collectionController.getAll)
   .post(authController.protect, collectionController.post);
 
+router.route('/is-available')
+  .post(authController.protect, collectionController.isAvailable);
+
 router.route('/:id')
   .get(authController.protect, collectionController.get)
   .patch(authController.protect, collectionController.update)
