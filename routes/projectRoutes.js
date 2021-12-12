@@ -8,6 +8,9 @@ router.route('/')
   .get(authController.protect, projectController.getAll)
   .post(authController.protect, projectController.post);
 
+router.route('/find-available-target')
+  .get(authController.protect, projectController.findAvailableTarget);
+
 router.route('/:id')
   .get(authController.protect, projectController.get)
   .patch(authController.protect, projectController.update)
